@@ -39,6 +39,15 @@ const Router = () => {
           return res.data
         },
       },
+      {
+        path: 'students/:id',
+        element: <Student />,
+        loader: async ({ params }) => {
+          const { id } = params
+          let res = await axios.get(`/students/${id}`)
+          return res.data
+        },
+      },
     ])
     return <RouterProvider router={router} />
   }
