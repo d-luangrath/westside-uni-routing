@@ -20,10 +20,25 @@ const Router = () => {
             index: true,
             element: <AboutMain />,
           },
-         
+          {
+            path: 'contact',
+            element: <Contact />,
+          },
+          {
+            path: 'history',
+            element: <History />,
+          },
         ],
       },
-
+      {
+        path: 'classlist/:name',
+        element: <ClassList />,
+        loader: async ({ params }) => {
+          const { name } = params
+          let res = await axios.get(`/classlist/${name}`)
+          return res.data
+        },
+      },
     ])
     return <RouterProvider router={router} />
   }
